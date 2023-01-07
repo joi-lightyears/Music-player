@@ -12,21 +12,26 @@
     <div class="container">
         <div class="img-wrapper">
             <div class="image-container">
-                <div class="main-img" alt="">
+                <div class="main-img" alt=""></div>
             </div>
         </div>
-        <h3 class="song-name">Mặt mộc</h3>
+        <h3 class="song-name">Nu Cuoi Em La Nang</h3>
         <div class="author-name">An Nhi</div>
         <input type="range" class="song-bar">
+        <audio src="" id="song"></audio>
         <div class="timer">
-            <div class="duration">0:10</div>
-            <div class="remaining">4:11</div>
+            <div class="currentTime">0:10</div>
+            <div class="duration">4:11</div>
         </div>
         <div class="controls">
             <ion-icon name="play-back" class="play-back"></ion-icon>
-            <ion-icon name="play" class="play"></ion-icon>
+            <div class="play-inner">
+                <ion-icon name="play" class="play"></ion-icon>
+            </div>
             <ion-icon name="play-forward" class="play-forward"></ion-icon>
         </div>
     </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>
