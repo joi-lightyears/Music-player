@@ -5,20 +5,80 @@ const backBtn = document.querySelector('.play-back')
 const currTime = document.querySelector('.currentTime')
 const durationTime = document.querySelector('.duration')
 const songBar = document.querySelector('.song-bar')
+const shuffleBtn = document.querySelector('.shuffleBtn')
+const repeatBtn = document.querySelector('.repeatBtn')
+const songName = document.querySelector('.song-name')
 
 let isPlaying = true
+let isShuffle = false
+
 let indexSong = 0
+let indexRepeat = 0
 
-const playlist= ['nuCuoiEmLaNang.mp3', 'emLaNhat.mp3', 'matmoc.mp3', 'hinhNhuTaThichNhau.mp3', 'tinhCaTinhTa.mp3' ]
+// const repeatStatus = [0,1,2] //0: lay once time, 1: repeat whole playlist, 2: repeat a song
+const repeatStatus=[
+    {
+        id: 0,
+    },
+    {
+        id: 1,
+        className: 'playlistRepeat'
+    },
+    {
+        id: 2,
+        className: 'songRepeat'
+    }
+]
+let repeat = repeatStatus[indexRepeat].id
 
-song.setAttribute('src', `./mp3/${playlist[indexSong]}`)
+
+const playlist = [
+    {
+        id: 1,
+        title: 'Nu Cuoi Em La Nang',
+        file: 'nuCuoiEmLaNang.mp3',
+    },
+    {
+        id: 2,
+        title: 'Em La Nhat',
+        file: 'emLaNhat.mp3',
+    },
+    {
+        id: 3,
+        title: 'Mat Moc',
+        file: 'matmoc.mp3',
+    },
+    {
+        id: 4,
+        title: 'Hinh Nhu Ta Thich Nhau',
+        file: 'hinhNhuTaThichNhau.mp3',
+    },
+    {
+        id: 5,
+        title: 'Tinh Ca Tinh Ta',
+        file: 'tinhCaTinhTa.mp3',
+    }
+]
+let time = setInterval(timer, 500)
 song.addEventListener('ended', handleEndedSong)
 function handleEndedSong(){
-    changeSong(1)
+    if (repeat===0) // just play 1 song
+    {
+        playPause()
+    }else if(repeat===1) // repeat whole playlist
+    {
+        changeSong(1)
+    }else if(repeat===2){ // repeat 1 song
+        changeSong(0)
+    }
 }
 timer()
-let time = setInterval(timer, 500)
-
+// first song when reload
+function init(){
+    song.setAttribute('src', `./mp3/${playlist[indexSong].file}`)
+    songName.innerHTML = playlist[indexSong].title
+}
+init()
 
 // play-pause
 playBtn.addEventListener("click", playPause)
@@ -56,7 +116,8 @@ function changeSong(pos){
         }
     }
     isPlaying=true
-    song.setAttribute('src', `./mp3/${playlist[indexSong]}`)
+    song.setAttribute('src', `./mp3/${playlist[indexSong].file}`)
+    songName.innerHTML = playlist[indexSong].title
     playPause()
 }
 
@@ -82,4 +143,23 @@ function formatTimer(num){
 songBar.addEventListener('change', handleChange)
 function handleChange(){
     song.currentTime = songBar.value
+}
+
+// repeat song
+repeatBtn.addEventListener('click', handleRepeat)
+function handleRepeat(){
+    indexRepeat++
+    if(indexRepeat===repeatStatus.length)
+    {
+        indexRepeat=0
+    }
+    repeatBtn.className ='repeatBtn md hydrated'
+    repeatBtn.classList.add(repeatStatus[indexRepeat].className)
+    repeat=repeatStatus[indexRepeat].id
+    console.log(indexRepeat)
+}
+
+// shuffle
+shuffleBtn.addEventListener('click', handleShuffle)
+function handleShuffle(){
 }
