@@ -40,9 +40,10 @@ const playlist = [
     },
     {
         id: 2,
-        title: 'Em La Nhat',
-        file: 'emLaNhat.mp3',
+        title: 'Tinh Ca Tinh Ta',
+        file: 'tinhCaTinhTa.mp3',
     },
+    
     {
         id: 3,
         title: 'Mat Moc',
@@ -55,8 +56,8 @@ const playlist = [
     },
     {
         id: 5,
-        title: 'Tinh Ca Tinh Ta',
-        file: 'tinhCaTinhTa.mp3',
+        title: 'Em La Nhat',
+        file: 'emLaNhat.mp3',
     },
     {
         id: 6,
