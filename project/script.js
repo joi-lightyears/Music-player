@@ -62,10 +62,10 @@ const playlist = [
 let time = setInterval(timer, 500)
 song.addEventListener('ended', handleEndedSong)
 function handleEndedSong(){
-    if (repeat===0) // just play 1 song
+    if (repeat===0 && !isShuffle) // just play 1 song
     {
         playPause()
-    }else if(repeat===1) // repeat whole playlist
+    }else if(repeat===1 || (repeat===0 && isShuffle)) // repeat whole playlist
     {
         changeSong(1)
     }else if(repeat===2){ // repeat 1 song
@@ -103,11 +103,19 @@ nextBtn.addEventListener("click",function(){
 backBtn.addEventListener("click",function(){
     changeSong(-1)
 })
+function random(){
+    return Math.floor(Math.random() * playlist.length)
+}
 function changeSong(pos){
-    if(pos===1){
+    if(pos===1 && !isShuffle){
         indexSong++
         if(indexSong>=playlist.length){
             indexSong=0
+        }
+    }else if(pos===1 && isShuffle){
+        let tempIndex = indexSong
+        while(indexSong===tempIndex){
+            indexSong = random()
         }
     }else if(pos===-1){
         indexSong--
@@ -148,6 +156,9 @@ function handleChange(){
 // repeat song
 repeatBtn.addEventListener('click', handleRepeat)
 function handleRepeat(){
+    if(isShuffle){
+        handleShuffle()
+    }
     indexRepeat++
     if(indexRepeat===repeatStatus.length)
     {
@@ -156,10 +167,20 @@ function handleRepeat(){
     repeatBtn.className ='repeatBtn md hydrated'
     repeatBtn.classList.add(repeatStatus[indexRepeat].className)
     repeat=repeatStatus[indexRepeat].id
-    console.log(indexRepeat)
 }
 
 // shuffle
 shuffleBtn.addEventListener('click', handleShuffle)
 function handleShuffle(){
+    if(isShuffle){ //disable shuffle
+        shuffleBtn.classList.toggle('activeShuffle')
+        isShuffle=false
+    }else{ //play shuffle
+        shuffleBtn.classList.toggle('activeShuffle')
+        isShuffle=true
+        //reset repeat when choose shuffle
+        indexRepeat=0
+        repeatBtn.className ='repeatBtn md hydrated'
+        repeat=repeatStatus[indexRepeat].id
+    }
 }
