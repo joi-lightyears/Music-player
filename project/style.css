@@ -31,6 +31,7 @@ body{
     background-color: #fff;
     width: 20rem;
     height: 30rem;
+    position: relative;
     /* border: 1px solid black; */
     padding: 30px;
     border-radius: 23px;
@@ -46,6 +47,7 @@ body{
     ;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 .container .img-wrapper{
     height: 15rem;
@@ -95,6 +97,7 @@ body{
   0px 172px 186px -18px rgba(0, 0, 0, 0.12)
 ;
 }
+
 .container .song-name{
     margin-top: 20px;
     margin-left: 5px;
@@ -214,6 +217,145 @@ body{
   transition: 0.2s ease-in-out;
 }
 
+/* music list */
+.music-list{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* bottom: 15px; */
+  /* background: #acaad9; */
+  /* background-color:#ececec; */
+  background: rgb(229,217,242);
+  background: linear-gradient(90deg, rgba(229,217,242,1) 0%, rgba(205,193,255,1) 100%);
+  width: 90%;
+  padding: 10px;
+  border-radius: 13px;
+  /* overflow-y: auto; */
+  height: 55%;
+  z-index: 2;
+  bottom: -55%;
+  pointer-events: none;
+  opacity: 0;
+  /* transition: all 0.14s ease-out; */
+  transition: all 400ms cubic-bezier(.47,1.64,.41,.8);
+}
+.music-list.show{
+  bottom: 25px;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 400ms cubic-bezier(.47,1.64,.41,.8);
+
+}
+.music-list .header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+}
+.music-list .header-row .music-queue{
+  width: 30px;
+  height: 30px;
+  color: #56556c;
+}
+.music-list .header-row span{
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #56556c;
+}
+.music-list .header .closeBtn{
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.music-list ul li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow:
+  0px 3.4px 3.7px -18px rgba(0, 0, 0, 0.029),
+  0px 7.8px 8.4px -18px rgba(0, 0, 0, 0.042),
+  0px 13.6px 14.7px -18px rgba(0, 0, 0, 0.051),
+  0px 21.5px 23.3px -18px rgba(0, 0, 0, 0.06),
+  0px 33.2px 35.9px -18px rgba(0, 0, 0, 0.069),
+  0px 51.9px 56.1px -18px rgba(0, 0, 0, 0.078),
+  0px 86.1px 93.1px -18px rgba(0, 0, 0, 0.091),
+  0px 172px 186px -18px rgba(0, 0, 0, 0.12)
+;
+  transition: 0.2s all;
+}
+.music-list ul li:hover{
+  transform: scale(0.975);
+  transition: 0.2s all;
+
+}
+.music-list ul li:last-child{
+  margin-bottom: 10px;
+}
+.music-list .header-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+.music-list ul li .row{
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  justify-content: center;
+}
+.music-list ul{
+  height: 76%;
+  margin: 10px 0;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+.music-list ul::-webkit-scrollbar{
+  width: 0px;
+}
+.music-list ul li .row span{
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333244;
+}
+.music-list ul li .row .author-list{
+  font-size: 0.7rem;
+  color: gray;
+}
+.music-list ul li span{
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #56556c;
+}
+.container .list-bar{
+  width: 30%;
+  height: 8px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 12px;
+  background-color: gray;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.14s ease-out;
+}
+.container .list-bar:hover{
+  opacity: 1;
+  transition: all 0.14s ease-out;
+  width: 40%;
+
+}
 @media screen and (max-width:480px){
   body{
     height: calc(var(--vh, 1vh) * 100);

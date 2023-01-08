@@ -8,6 +8,11 @@ const songBar = document.querySelector('.song-bar')
 const shuffleBtn = document.querySelector('.shuffleBtn')
 const repeatBtn = document.querySelector('.repeatBtn')
 const songName = document.querySelector('.song-name')
+const listBar = document.querySelector('.list-bar')
+const musicList = document.querySelector('.music-list')
+const songNameList = musicList.querySelector('.song-name-list')
+const authorList = musicList.querySelector('.author-list')
+const listWrapper = musicList.querySelector('.list-wrapper')
 
 let isPlaying = true
 let isShuffle = false
@@ -79,11 +84,43 @@ function handleEndedSong(){
         changeSong(0)
     }
 }
+
+playlist.forEach((songList)=>{
+    let fileTemp = songList.file.slice(0,-4)
+    let liTag = `
+    <li>
+        <div class="row">
+            <span class="song-name-list">${songList.title}</span>
+            <div class="author-list">Thanh Dat</div>
+        </div>
+        <audio id='${fileTemp}' src='./mp3/${songList.file}'></audio>
+        <span class="duration-list ${fileTemp}">00:00</span>
+    </li>
+    `
+    listWrapper.insertAdjacentHTML('beforeend',liTag)
+    let liSongAudio = listWrapper.querySelector(`#${fileTemp}`)
+    let liSongDur = listWrapper.querySelector(`.${fileTemp}`)
+    liSongAudio.addEventListener('loadeddata',()=>{
+        liSongDur.textContent = formatTimer(liSongAudio.duration)
+    })
+    
+
+    // liSongAudio.addEventListener('loadeddata',()=>{
+
+    // })
+    // const durr = formatTimer(liSongAudio.duration)
+
+    // liSongDur.textContent = durr
+
+})
+
 timer()
 // first song when reload
 function init(){
     song.setAttribute('src', `./mp3/${playlist[indexSong].file}`)
     songName.innerHTML = playlist[indexSong].title
+
+    
 }
 init()
 
@@ -190,4 +227,10 @@ function handleShuffle(){
         repeatBtn.className ='repeatBtn md hydrated'
         repeat=repeatStatus[indexRepeat].id
     }
+}
+
+// show music list
+listBar.addEventListener('click', handleShow)
+function handleShow(){
+    musicList.classList.toggle('show')
 }
