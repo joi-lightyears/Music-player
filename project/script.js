@@ -35,8 +35,8 @@ let repeat = repeatStatus[indexRepeat].id
 const playlist = [
     {
         id: 1,
-        title: 'Nu Cuoi Em La Nang',
-        file: 'nuCuoiEmLaNang.mp3',
+        title: 'Anh Se Don Em',
+        file: 'anhSeDonEm.mp3',
     },
     {
         id: 2,
@@ -57,7 +57,13 @@ const playlist = [
         id: 5,
         title: 'Tinh Ca Tinh Ta',
         file: 'tinhCaTinhTa.mp3',
-    }
+    },
+    {
+        id: 6,
+        title: 'Nu Cuoi Em La Nang',
+        file: 'nuCuoiEmLaNang.mp3',
+    },
+    
 ]
 let time = setInterval(timer, 500)
 song.addEventListener('ended', handleEndedSong)
