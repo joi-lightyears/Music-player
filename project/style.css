@@ -312,13 +312,16 @@ body{
   justify-content: center;
 }
 .music-list ul{
-  height: 76%;
-  margin: 10px 0;
+  height: 81%;
+  margin-top: 2px;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
+  
+  /* background-color: black; */
+  border-radius: 12px;
 }
 .music-list ul::-webkit-scrollbar{
   width: 0px;
