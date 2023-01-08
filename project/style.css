@@ -243,7 +243,7 @@ body{
   bottom: 25px;
   opacity: 1;
   pointer-events: auto;
-  transition: all 400ms cubic-bezier(.47,1.64,.41,.8);
+  /* transition: all 400ms cubic-bezier(.47,1.64,.41,.8); */
 
 }
 .music-list .header{
