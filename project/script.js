@@ -71,7 +71,31 @@ const playlist = [
         title: 'Nu Cuoi Em La Nang',
         file: 'nuCuoiEmLaNang.mp3',
     },
-    
+    {
+        id: 7,
+        title: 'Collide',
+        file: 'collide.mp3',
+    },
+    {
+        id: 8,
+        title: 'Em Khong Hieu',
+        file: 'emKhongHieu.mp3',
+    },
+    {
+        id: 9,
+        title: 'Mashup Hit TikTok',
+        file: 'MashupHitTikTok.mp3',
+    },
+    {
+        id: 10,
+        title: 'Chan Ai Masked',
+        file: 'chanAiOSen.mp3',
+    },
+    {
+        id: 11,
+        title: 'Da Vu Masked',
+        file: 'daVuMasked.mp3',
+    }
 ]
 let time = setInterval(timer, 500)
 song.addEventListener('ended', handleEndedSong)
