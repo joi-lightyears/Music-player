@@ -256,7 +256,13 @@ body{
   width: 30px;
   height: 30px;
   color: #56556c;
+  /* animation: spinner 5s infinite linear; */
 }
+/* @keyframes spinner{
+  to{
+    transform: rotate(360deg);
+  }
+} */
 .music-list .header-row span{
   margin-left: 10px;
   font-weight: bold;
