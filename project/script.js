@@ -1,4 +1,5 @@
 const song = document.querySelector('#song')
+// const tempSong = document.querySelector('#tempSong')
 const playBtn = document.querySelector('.play-inner')
 const nextBtn = document.querySelector('.play-forward')
 const backBtn = document.querySelector('.play-back')
@@ -13,6 +14,7 @@ const musicList = document.querySelector('.music-list')
 const songNameList = musicList.querySelector('.song-name-list')
 const authorList = musicList.querySelector('.author-list')
 const listWrapper = musicList.querySelector('.list-wrapper')
+const closeBtn = musicList.querySelector('.closeBtn')
 
 let isPlaying = true
 let isShuffle = false
@@ -84,25 +86,24 @@ function handleEndedSong(){
         changeSong(0)
     }
 }
-
 playlist.forEach((songList)=>{
     let fileTemp = songList.file.slice(0,-4)
+    // tempSong.setAttribute('src',' ')
     let liTag = `
-    <li>
+    <li class="song-list ${songList.id}_${fileTemp}">
         <div class="row">
-            <span class="song-name-list">${songList.title}</span>
+            <span class="song-name-list ">${songList.title}</span>
             <div class="author-list">Thanh Dat</div>
         </div>
-        <audio id='${fileTemp}' src='./mp3/${songList.file}'></audio>
-        <span class="duration-list ${fileTemp}">00:00</span>
+        <span class="duration-list}">...</span>
     </li>
     `
-    listWrapper.insertAdjacentHTML('beforeend',liTag)
-    let liSongAudio = listWrapper.querySelector(`#${fileTemp}`)
-    let liSongDur = listWrapper.querySelector(`.${fileTemp}`)
-    liSongAudio.addEventListener('loadeddata',()=>{
-        liSongDur.textContent = formatTimer(liSongAudio.duration)
-    })
+    listWrapper.insertAdjacentHTML('beforeEnd',liTag)
+    // tempSong.setAttribute('src',`./mp3/${songList.file}`)
+    // let liSongDur = listWrapper.querySelector(`.${fileTemp}`)
+    // tempSong.addEventListener('loadedmetadata',()=>{
+    //     liSongDur.textContent = formatTimer(tempSong.duration)
+    // })
     
 
     // liSongAudio.addEventListener('loadeddata',()=>{
@@ -113,6 +114,7 @@ playlist.forEach((songList)=>{
     // liSongDur.textContent = durr
 
 })
+const songList = musicList.querySelectorAll('.song-list')
 
 timer()
 // first song when reload
@@ -233,4 +235,17 @@ function handleShuffle(){
 listBar.addEventListener('click', handleShow)
 function handleShow(){
     musicList.classList.toggle('show')
+}
+closeBtn.addEventListener('click',handleClose)
+function handleClose(){
+    musicList.classList.toggle('show')
+}
+songList.forEach((sol)=>{
+    sol.addEventListener('click', ()=>handleOption(sol))
+})
+function handleOption(sol){
+    const infoId = sol.className.split(' ')[1].split('_')[0]
+    indexSong=infoId-1
+    changeSong(0)
+
 }
